@@ -1,0 +1,7 @@
+name: Rules Block
+type: module
+description: Defines a custom block with certain rules.
+core: 8.x
+package: Custom
+dependencies:
+  - block

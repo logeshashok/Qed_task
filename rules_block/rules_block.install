@@ -1,0 +1,31 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\block_content\Entity\BlockContent;
+
+ /**
+ * Implements hook_install().
+	*/
+ function rules_block_install() {
+  // Add Demo block.
+  $block_content = BlockContent::create([
+    'type' => 'basic',
+    'info' => 'Related Articles Block',
+  ]);
+  $block_content->set('body', 'Block Created and Assigned to content region on module installation.');
+  $block_content->save();
+
+  $block = Block::create([
+    'id' => 'related_articles_block',
+    'plugin' => 'block_content:' . $block_content->uuid(),
+    'region' => 'content',
+    'provider' => 'block_content',
+    'weight' => -100,
+    'theme' => \Drupal::config('system.theme')->get('default'),
+    'settings' => [
+      'label' => 'Related Article Block',
+      'label_display' => 'visible',
+    ],
+  ]);
+  $block->save();
+}
