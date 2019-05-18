@@ -1,12 +1,13 @@
-<?php
+<? php
 
 use Drupal\block\Entity\Block;
 use Drupal\block_content\Entity\BlockContent;
 
- /**
+/**
+ * @file
  * Implements hook_install().
-	*/
- function rules_block_install() {
+ */
+function rules_block_install() {
   // Add Demo block.
   $block_content = BlockContent::create([
     'type' => 'basic',
